@@ -1,5 +1,8 @@
 #!/bin/bash
 
+date
+echo -e ""
+
 if [[ -z ${ANDROID_SDK_ROOT} ]]; then
   echo -e "\n(*) ANDROID_SDK_ROOT not defined\n"
   exit 1
@@ -212,6 +215,9 @@ download_gnu_config
 # DOWNLOAD LIBRARY SOURCES
 downloaded_library_sources "${ENABLED_LIBRARIES[@]}"
 
+echo -e ">>>"
+date
+
 # SAVE ORIGINAL API LEVEL = NECESSARY TO BUILD 64bit ARCHITECTURES
 export ORIGINAL_API=${API}
 
@@ -361,6 +367,7 @@ if [[ -n ${ANDROID_ARCHITECTURES} ]]; then
   fi
 
   echo -e -n "\n"
+  date
 
   # DO NOT BUILD ANDROID ARCHIVE
   if [[ ${NO_ARCHIVE} -ne 1 ]]; then
@@ -391,3 +398,7 @@ if [[ -n ${ANDROID_ARCHITECTURES} ]]; then
     echo -e "INFO: Skipped creating Android archive.\n" 1>>"${BASEDIR}"/build.log 2>&1
   fi
 fi
+
+echo -e ">>>"
+date
+
